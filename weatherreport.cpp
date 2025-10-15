@@ -14,8 +14,9 @@ namespace WeatherSpace
         virtual int WindSpeedKMPH() const = 0;
     };
 
-    // Original production stub (can stay, not used in tests)
+    // Original stub (kept, can be used in other tests)
     class SensorStub : public IWeatherSensor {
+    public:
         int Humidity() const override { return 72; }
         int Precipitation() const override { return 70; }
         double TemperatureInC() const override { return 26; }
@@ -37,7 +38,7 @@ namespace WeatherSpace
         return report;
     }
 
-    // New sensor stubs to expose bug
+    // New stub to expose bug
     class RainySensorStub : public IWeatherSensor {
     public:
         double TemperatureInC() const override { return 28; }
@@ -58,7 +59,7 @@ namespace WeatherSpace
     {
         SensorStub sensor;
         string report = Report(sensor);
-        assert(report.length() > 0);
+        assert(report.length() > 0); // keeps old test
     }
 }
 
