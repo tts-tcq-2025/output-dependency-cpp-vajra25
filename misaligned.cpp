@@ -2,7 +2,6 @@
 #include <cassert>
 #include <string>
 
-// Original print function (kept)
 int printColorMap() {
     const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
     const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
@@ -15,7 +14,7 @@ int printColorMap() {
     return i * j;
 }
 
-// Refactored helper to separate logic
+// Refactor helper to separate logic
 std::string getColorLine(int i, int j) {
     const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
     const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
@@ -28,7 +27,7 @@ void testPrintColorMap() {
     int result = printColorMap();
     assert(result == 25);
 
-    // New unit tests
+    // Unit tests to expose misalignment
     assert(getColorLine(0,0) == "0 | White | Blue");
     assert(getColorLine(0,1) == "1 | White | Orange"); // will fail
     assert(getColorLine(1,0) == "5 | Red | Blue");     // will fail
