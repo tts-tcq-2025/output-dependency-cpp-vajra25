@@ -1,32 +1,30 @@
-#include <string>
 #include <iostream>
-#include <assert.h>
-
-using namespace std;
+#include <string>
+#include <cassert>
 
 namespace WeatherSpace
-{    
+{
     class IWeatherSensor {
     public:
         virtual double TemperatureInC() const = 0;
         virtual int Precipitation() const = 0;
         virtual int Humidity() const = 0;
         virtual int WindSpeedKMPH() const = 0;
+        virtual ~IWeatherSensor() {}
     };
 
-    // Original stub (kept, can be used in other tests)
     class SensorStub : public IWeatherSensor {
     public:
-        int Humidity() const override { return 72; }
-        int Precipitation() const override { return 70; }
         double TemperatureInC() const override { return 26; }
+        int Precipitation() const override { return 70; }
+        int Humidity() const override { return 72; }
         int WindSpeedKMPH() const override { return 52; }
     };
 
-    string Report(const IWeatherSensor& sensor)
+    std::string Report(const IWeatherSensor& sensor)
     {
         int precipitation = sensor.Precipitation();
-        string report = "Sunny Day";
+        std::string report = "Sunny Day";
 
         if (sensor.TemperatureInC() > 25)
         {
@@ -38,7 +36,7 @@ namespace WeatherSpace
         return report;
     }
 
-    // New stub to expose bug
+    // Bug-exposing stub
     class RainySensorStub : public IWeatherSensor {
     public:
         double TemperatureInC() const override { return 28; }
@@ -50,22 +48,23 @@ namespace WeatherSpace
     void TestRainy()
     {
         RainySensorStub sensor;
-        string report = Report(sensor);
-        cout << report << endl;
-        assert(report.find("rain") != string::npos); // will fail
+        std::string report = Report(sensor);
+        std::cout << report << std::endl;
+        assert(report.find("rain") != std::string::npos); // will fail
     }
 
     void TestHighPrecipitation()
     {
         SensorStub sensor;
-        string report = Report(sensor);
-        assert(report.length() > 0); // keeps old test
+        std::string report = Report(sensor);
+        assert(report.length() > 0);
     }
 }
 
-void testWeatherReport() {
-    cout << "\nWeather report test\n";
+void testWeatherReport()
+{
+    std::cout << "\nWeather report test\n";
     WeatherSpace::TestRainy();
     WeatherSpace::TestHighPrecipitation();
-    cout << "All is well (maybe)\n";
+    std::cout << "All is well (maybe!)\n";
 }
