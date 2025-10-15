@@ -10,7 +10,7 @@ char size(int cms) {
     } else if(cms > 42) {
         sizeName = 'L';
     }
-    return sizeName;
+    return sizeName; // still returns '\0' for 38 or 42, test will fail
 }
 
 void testTshirtSize() {
@@ -22,10 +22,8 @@ void testTshirtSize() {
     assert(size(43) == 'L');
 
     // New tests to expose bug
-    assert(size(38) == 'M'); // edge case missing in original test
-    assert(size(42) == 'M'); // edge case missing in original test
+    assert(size(38) == 'M'); // edge case missing in original code
+    assert(size(42) == 'M'); // edge case missing in original code
 
     std::cout << "All is well (maybe!)\n";
 }
-
-
