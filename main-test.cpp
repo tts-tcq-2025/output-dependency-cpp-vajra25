@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 
+// Declare test functions
 void testTshirtSize();
 void testPrintColorMap();
 void testWeatherReport();
@@ -15,3 +16,4 @@ TEST(ColorMap, Print) {
 TEST(WeatherReport, Report) {
     testWeatherReport();
 }
+
