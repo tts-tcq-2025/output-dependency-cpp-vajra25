@@ -1,15 +1,20 @@
-#include "weatherreport.h"
+#include <string>
+using namespace std;
 
-std::string reportWeather(WeatherSensor* sensor) {
-    float temp = sensor->getTemperature();
-    bool rain = sensor->isRaining();
+class WeatherSensor {
+public:
+    virtual float getTemperature() { return 25.0; }  // default
+};
 
-    if (rain)
-        return "Rainy";
-    else if (temp > 30)
-        return "Hot";
-    else if (temp == 30)
-        return "Moderate";
-    else
-        return "Cold";
-}
+class WeatherReporter {
+    WeatherSensor* sensor;
+public:
+    explicit WeatherReporter(WeatherSensor* s) : sensor(s) {}
+    string reportWeather() {
+        float temp = sensor->getTemperature();
+        if (temp < 0) return "Freezing";
+        else if (temp < 20) return "Cold";
+        else if (temp < 35) return "Warm";
+        else return "Hot";
+    }
+};
