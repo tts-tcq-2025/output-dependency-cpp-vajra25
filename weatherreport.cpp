@@ -8,7 +8,8 @@ std::string reportWeather(WeatherSensor* sensor) {
         return "Rainy";
     else if (temp > 30)
         return "Hot";
-    else if (temp <= 30)
-        return "Cold";  // ❌ BUG: should handle exactly 30 separately
-    return "Unknown";
+    else if (temp == 30)
+        return "Moderate";
+    else
+        return "Cold";
 }
