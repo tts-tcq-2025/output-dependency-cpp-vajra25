@@ -1,16 +1,17 @@
-#include "misaligned.h"
+#include <string>
+using namespace std;
 
-std::map<int, std::string> getColorMap() {
-    return {
-        {0, "Black"}, {1, "Brown"}, {2, "Red"},
-        {3, "Orange"}, {4, "Yellow"}, {5, "Green"},
-        {6, "Blue"}, {7, "Violet"}, {8, "Grey"}, {9, "White"}
-    };
+string getColorForNumber(int number) {
+    switch (number) {
+        case 1: return "Brown";
+        case 2: return "Red";
+        case 3: return "Orange";
+        case 4: return "Yellow";
+        case 5: return "Green";
+        default: return "Unknown";
+    }
 }
 
-std::string getColorForNumber(int num) {
-    auto colorMap = getColorMap();
-    if (colorMap.find(num) != colorMap.end())
-        return colorMap[num];
-    return "Invalid";
+string formatMapping(int number, const string &color) {
+    return to_string(number) + " | " + color;
 }
