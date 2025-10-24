@@ -1,21 +1,17 @@
-#include <iostream>
-#include <assert.h>
+#include <string>
+using namespace std;
 
-int printColorMap() {
-    const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
-    const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
-    int i = 0, j = 0;
-    for(i = 0; i < 5; i++) {
-        for(j = 0; j < 5; j++) {
-            std::cout << i * 5 + j << " | " << majorColor[i] << " | " << minorColor[i] << "\n";
-        }
+string getColorForNumber(int number) {
+    switch (number) {
+        case 1: return "Brown";
+        case 2: return "Red";
+        case 3: return "Orange";
+        case 4: return "Yellow";
+        case 5: return "Green";
+        default: return "Unknown";
     }
-    return i * j;
 }
 
-void testPrintColorMap() {
-    std::cout << "\nPrint color map test\n"; 
-    int result = printColorMap();
-    assert(result == 25);
-    std::cout << "All is well (maybe!)\n";
+string formatMapping(int number, const string &color) {
+    return to_string(number) + " | " + color;
 }
