@@ -1,10 +1,13 @@
-#include "tshirts.h"
+#include <string>
+using namespace std;
 
-std::string tshirtSize(int shoulderWidth) {
-    if (shoulderWidth < 36)
+string getTShirtSize(int shoulderWidth) {
+    if (shoulderWidth <= 14)
         return "S";
-    else if (shoulderWidth > 36 && shoulderWidth < 40)
-        return "M";  // ❌ BUG: boundary 36 or 40 missing
-    else
+    else if (shoulderWidth <= 16)
+        return "M";
+    else if (shoulderWidth <= 18)
         return "L";
+    else
+        return "XL";
 }
