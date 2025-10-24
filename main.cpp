@@ -1,48 +1,16 @@
 #include <iostream>
-#include "tshirts.h"
-#include "misaligned.h"
-#include "weatherreport.h"
+using namespace std;
 
-bool testTshirt() {
-    return tshirtSize(35) == "S" &&
-           tshirtSize(36) == "S" &&
-           tshirtSize(38) == "M" &&
-           tshirtSize(40) == "M" &&
-           tshirtSize(41) == "L";
-}
-
-bool testMisaligned() {
-    return getColorForNumber(0) == "Black" &&
-           getColorForNumber(5) == "Green" &&
-           getColorForNumber(9) == "White" &&
-           getColorForNumber(10) == "Invalid";
-}
-
-bool testWeatherReport() {
-    StubSensorHot hot;
-    StubSensorRain rain;
-    StubSensorModerate moderate;
-
-    return reportWeather(&hot) == "Hot" &&
-           reportWeather(&rain) == "Rainy" &&
-           reportWeather(&moderate) == "Moderate";
-}
+// Declare all test functions
+void testTShirtSize();
+void testMisaligned();
+void testWeatherReport();
 
 int main() {
-    std::cout << "Running all tests...\n";
+    testTShirtSize();
+    testMisaligned();
+    testWeatherReport();
 
-    bool tshirtOK = testTshirt();
-    bool colorOK = testMisaligned();
-    bool weatherOK = testWeatherReport();
-
-    if (tshirtOK && colorOK && weatherOK) {
-        std::cout << "✅ All tests passed successfully!\n";
-        return 0; // success exit
-    } else {
-        std::cout << "❌ One or more tests failed!\n";
-        if (!tshirtOK) std::cout << "   - Tshirt tests failed\n";
-        if (!colorOK) std::cout << "   - Misaligned tests failed\n";
-        if (!weatherOK) std::cout << "   - WeatherReport tests failed\n";
-        return 1; // failure exit
-    }
+    cout << "✅ All tests passed successfully!" << endl;
+    return 0;
 }
